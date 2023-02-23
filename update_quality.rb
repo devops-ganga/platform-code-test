@@ -33,5 +33,15 @@ if @quality < 50
 end
 end
 end
+
+if @name != Award::BLUE_DISTINCTION_PLUS
+  @expires_in -= 1
+end
+
+if @expires_in < 0
+  if @name != Award::BLUE_FIRST
+    if @name != Award::BLUE_COMPARE
+      if @quality > 0
+  
 end
 end

@@ -1,32 +1,35 @@
-def update_quality(awards):
-    for award in awards:
-        if award.name != 'Blue First' and award.name != 'Blue Compare':
-            if award.quality > 0:
-                if award.name != 'Blue Distinction Plus':
-                    award.quality -= 1
-        else:
-            if award.quality < 50:
-                award.quality += 1
-                if award.name == 'Blue Compare':
-                    if award.expires_in < 11:
-                        if award.quality < 50:
-                            award.quality += 1
-                    if award.expires_in < 6:
-                        if award.quality < 50:
-                            award.quality += 1
+def __init__(self, name=None, expires_in=None, quality=None):
+    self.name = name
+    self.expires_in = expires_in
+    self.quality = quality
 
-        if award.name != 'Blue Distinction Plus':
-            award.expires_in -= 1
+def update_quality(self):
+    if self.name != Award.BLUE_FIRST and self.name != Award.BLUE_COMPARE:
+        if self.quality > 0:
+            if self.name != Award.BLUE_DISTINCTION_PLUS:
+                self.quality -= 1
+    else:
+        if self.quality < 50:
+            self.quality += 1
+            if self.name == Award.BLUE_COMPARE:
+                if self.expires_in < 11:
+                    if self.quality < 50:
+                        self.quality += 1
+                if self.expires_in < 6:
+                    if self.quality < 50:
+                        self.quality += 1
 
-        if award.expires_in < 0:
-            if award.name != 'Blue First':
-                if award.name != 'Blue Compare':
-                    if award.quality > 0:
-                        if award.name != 'Blue Distinction Plus':
-                            award.quality -= 1
-                else:
-                    award.quality = award.quality - award.quality
+    if self.name != Award.BLUE_DISTINCTION_PLUS:
+        self.expires_in -= 1
+
+    if self.expires_in < 0:
+        if self.name != Award.BLUE_FIRST:
+            if self.name != Award.BLUE_COMPARE:
+                if self.quality > 0:
+                    if self.name != Award.BLUE_DISTINCTION_PLUS:
+                        self.quality -= 1
             else:
-                if award.quality < 50:
-                    award.quality += 1
-
+                self.quality = 0
+        else:
+            if self.quality < 50:
+                self.quality += 1
